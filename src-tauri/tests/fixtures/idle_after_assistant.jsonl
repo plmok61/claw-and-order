@@ -1,0 +1,3 @@
+{"type":"file-history-snapshot","messageId":"m1","snapshot":{"messageId":"m1","trackedFileBackups":{},"timestamp":"2026-03-21T17:00:00.000Z"},"isSnapshotUpdate":false}
+{"parentUuid":null,"type":"user","userType":"external","cwd":"/tmp/demo","sessionId":"sess-1","message":{"role":"user","content":"Add input validation to the createUser endpoint"},"uuid":"u1","timestamp":"2026-03-21T17:00:01.000Z","isMeta":false}
+{"parentUuid":"u1","type":"assistant","cwd":"/tmp/demo","sessionId":"sess-1","uuid":"a1","timestamp":"2026-03-21T17:00:05.000Z","message":{"role":"assistant","model":"claude","content":[{"type":"text","text":"I'll add zod validation on createUser."}]}}
