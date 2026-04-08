@@ -2,7 +2,44 @@
 
 Desktop app (Tauri + React) that lists Claude Code sessions from `~/.claude/projects/`, shows a best-effort busy/idle state and timer from each session’s JSONL tail, and mirrors the transcript in the main pane.
 
-## Quickstart
+## Install the desktop app
+
+Use this path if you only want to **run** Claw & Order. You need Claude Code sessions on disk at `~/.claude/projects/` for the list to show anything (see [Session file locations](#session-file-locations)).
+
+### macOS
+
+**From a release (simplest, when available)**  
+Download the latest `.dmg` or packaged `.app` from this repository’s **Releases** page (if the maintainer publishes builds there). Open the DMG and drag **Claw & Order** into **Applications**, or copy the `.app` into **Applications**.
+
+**Build and install from source**  
+From a clone of the repo, with [Rust](https://www.rust-lang.org/tools/install), [Tauri prerequisites](https://tauri.app/start/prerequisites/), and Node.js 20+ installed:
+
+```bash
+npm install
+npm run tauri build
+```
+
+After the build finishes, the app bundle is usually at:
+
+`src-tauri/target/release/bundle/macos/Claw & Order.app`
+
+Drag that into **Applications** (or copy it there). If a **`.dmg`** was produced under `src-tauri/target/release/bundle/dmg/`, open it and drag the app into **Applications** the usual way.
+
+**First launch on macOS**  
+The first time you open a locally built or unsigned app, macOS may block it until you **right‑click → Open** once, or allow it under **System Settings → Privacy & Security**.
+
+### Windows and Linux
+
+After `npm run tauri build`, installers appear under `src-tauri/target/release/bundle/` (for example `.msi` / NSIS on Windows, `.deb` or AppImage on Linux, depending on your Tauri bundle targets). Install the artifact for your platform like any other app.
+
+## Development (build and run from source)
+
+### Prerequisites
+
+- [Rust](https://www.rust-lang.org/tools/install) and platform [Tauri prerequisites](https://tauri.app/start/prerequisites/)
+- Node.js 20+
+
+### Quickstart
 
 ```bash
 git clone <your-repo-url>
@@ -10,13 +47,6 @@ cd claw-and-order
 npm install
 npm run tauri dev
 ```
-
-If the list is empty, first confirm you have Claude Code sessions on disk at `~/.claude/projects/` (see [Session file locations](#session-file-locations)).
-
-## Prerequisites
-
-- [Rust](https://www.rust-lang.org/tools/install) and platform [Tauri prerequisites](https://tauri.app/start/prerequisites/)
-- Node.js 20+
 
 ### If `tauri build` fails with `cargo metadata` / `No such file or directory (os error 2)`
 
@@ -34,28 +64,10 @@ cargo --version
 
 On macOS you may also need Xcode Command Line Tools: `xcode-select --install`.
 
-## Run (desktop app)
-
-```bash
-npm install
-npm run tauri dev
-```
-
-Build: `npm run tauri build`
-
-### Install on macOS (release `.app`)
-
-After `npm run tauri build`, the app bundle is usually at:
-
-`src-tauri/target/release/bundle/macos/Claw & Order.app`
-
-Drag that into **Applications** (or copy it there). If a **`.dmg`** was produced under `src-tauri/target/release/bundle/dmg/`, open it and drag the app into **Applications** the usual way.
-
-The first time you open a locally built app, macOS may block it until you **right‑click → Open** once, or allow it under **System Settings → Privacy & Security**.
-
-## Other useful commands
+### Other useful commands
 
 - **Frontend-only dev server**: `npm run dev` (Vite on `http://localhost:1420`; Tauri expects this exact port)
+- **Production desktop bundle**: `npm run tauri build`
 - **Type-check + bundle**: `npm run build`
 - **Rust tests**: `cargo test --manifest-path src-tauri/Cargo.toml`
 
